@@ -1,0 +1,33 @@
+--Create a store database
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, category TEXT, price INTEGER, quantity INTEGER);
+
+INSERT INTO store VALUES
+(1, "Tie Guan Yin Milk Tea", "Milk Tea", 4.25, 100),
+(2, "Peach Tea", "Fruit Tea", 5.50, 80),
+(3, "Rose Milk Tea", "Floral Tea", 4.75, 80),
+(4, "Lavender Milk Tea", "Floral Tea", 4.75, 80),
+(5, "Black Milk Tea", "Milk Tea", 4.00, 120),
+(6, "Jasmine Milk Tea", "Milk Tea", 4.25, 120),
+(7, "Okinawa Milk Tea", "Imported Tea", 4.95, 60),
+(8, "Chrysanthemum Tea", "Floral Tea", 4.75, 80),
+(9, "Apple Tea", "Fruit Tea", 5.25, 80),
+(10, "Hokkaido Milk Tea", "Imported Tea", 4.95, 60),
+(11, "Earl Grey Milk Tea", "Milk Tea", 4.25, 100),
+(12, "Lychee Tea", "Fruit Tea", 5.75, 80),
+(13, "Orange Tea", "Fruit Tea", 5.00, 80),
+(14, "Hong Kong Milk Tea", "Imported Tea", 4.95, 60),
+(15, "Roasted Oolong Milk Tea", "Milk Tea", 4.25, 100);
+
+--Display the database ordered by price (high to low)
+SELECT * FROM store 
+ORDER BY price desc;
+
+--What is the average price of fruit teas?
+SELECT AVG(price) AS "avg fruit tea price" FROM store 
+WHERE category="Fruit Tea";
+
+--What are the 3 items with the lowest stock?
+SELECT item, quantity FROM store 
+ORDER BY quantity 
+LIMIT 3;
