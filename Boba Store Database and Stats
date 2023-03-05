@@ -1,4 +1,4 @@
---Create a store database
+/** Create a store database **/
 
 CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, category TEXT, price INTEGER, quantity INTEGER);
 
