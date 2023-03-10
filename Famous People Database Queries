@@ -1,0 +1,57 @@
+/** Famous people relational queries **/
+
+CREATE TABLE actors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    age INTEGER);
+
+INSERT INTO actors (name, age) VALUES
+    ("Angelina Jolie", 47),
+    ("Brad Pitt", 59),
+    ("Tom Hanks", 66),
+    ("Rita Wilson", 66),
+    ("Pedro Pascal", 47),
+    ("Elizabeth Olsen", 34);
+
+CREATE TABLE movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actor_id INTEGER,
+    title TEXT);
+
+INSERT INTO movies (actor_id, title) VALUES
+    (1, "By the Sea"),
+    (2, "By the Sea"),
+    (3, "That Thing You Do"),
+    (4, "That Thing You Do"),
+    (5, "Wonder Woman 1984"),
+    (6, "Avengers: Endgame");
+
+CREATE table couples (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actor1_id INTEGER,
+    actor2_id INTEGER);
+
+INSERT INTO couples (actor1_id, actor2_id) VALUES
+    (1, 2),
+    (2, 1),
+    (3, 4),
+    (4, 3),
+    (5, 0),
+    (6, 0);
+
+--See all current table information
+SELECT * FROM actors;
+SELECT * FROM movies;
+SELECT * FROM couples;
+
+--Which movies have these actors been in?
+SELECT actors.name AS name, movies.title AS movie_title FROM actors
+    JOIN movies 
+    ON actors.id = movies.actor_id;
+    
+--Who are the spouses of these actors (if any)?
+SELECT a.name AS name, b.name AS spouse FROM couples
+    LEFT JOIN actors a
+    ON a.id = couples.actor1_id
+    LEFT JOIN actors b
+    ON b.id = couples.actor2_id;
