@@ -1,34 +1,34 @@
-/** Fun with Pokemon Stats **/
+# Fun with Pokemon Stats
 
---[Pokemon Dataset](https://gist.github.com/pamelafox/26b9357c6120d3d0d27c2b90c950e8c6)
+# [Pokemon Dataset](https://gist.github.com/pamelafox/26b9357c6120d3d0d27c2b90c950e8c6)
 
---What is the overall strongest Pokemon (with the highest attack)?
+#1. What is the overall strongest Pokemon (with the highest attack)?
 SELECT Generation, Name, MAX(Attack) AS Attack_Power 
-FROM pokemon;
+    FROM pokemon;
 
---What is the overall weakest Pokemon (with the lowest attack)?
+#2. What is the overall weakest Pokemon (with the lowest attack)?
 SELECT Generation, Name, MIN(Attack) AS Attack_Power 
-FROM pokemon;
+    FROM pokemon;
 
---What is the strongest Pokemon (with the highest attack) in each type (type 1 only, strongest to weakest)?
+#3. What is the strongest Pokemon (with the highest attack) in each type (type 1 only, strongest to weakest)?
 SELECT Generation, Name, Type_1, MAX(Attack) AS Max_Attack 
-FROM pokemon 
-GROUP BY Type_1 
-ORDER BY MAX(Attack) desc;
+    FROM pokemon 
+    GROUP BY Type_1 
+    ORDER BY MAX(Attack) desc;
 
---What is the average base stat total for Grass type Pokemon?
+#4. What is the average base stat total for Grass type Pokemon?
 SELECT AVG(Total) AS Base_Stat_Total 
-FROM pokemon 
-WHERE Type_1="Grass" OR Type_2="Grass";
+    FROM pokemon 
+    WHERE Type_1="Grass" OR Type_2="Grass";
 
---What is the strongest Pokemon (with the highest attack) from the first 5 generations?
+#5. What is the strongest Pokemon (with the highest attack) from the first 5 generations?
 SELECT Generation, Name, MAX(Attack) AS Attack_Power 
-FROM pokemon 
-GROUP BY Generation 
-HAVING Attack_Power > 150 
-LIMIT 5;
+    FROM pokemon 
+    GROUP BY Generation 
+    HAVING Attack_Power > 150 
+    LIMIT 5;
 
---How many Pokemon have offensive vs. defensive playing styles?
+#6. How many Pokemon have offensive vs. defensive playing styles?
 SELECT COUNT(*), 
     CASE 
         WHEN Attack > 100 THEN "Offensive"
